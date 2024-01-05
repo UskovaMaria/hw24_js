@@ -52,9 +52,13 @@ function getFilteredTodos(data) {
 }
 
 function delTodo() {
-  todos.splice((this.parentElement.dataset.id - 1), 1);
-  renderTodoList(todos, todoListEl);
-  return;
+  const id = parseInt(this.parentElement.dataset.id);
+  const index = todos.findIndex(todo => todo.id === id);
+
+  if (index !== -1) {
+    todos.splice(index, 1);
+    renderTodoList(todos, todoListEl);
+  }
 }
 
 function renderTodoList(rawData, parentEl) {
